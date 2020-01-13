@@ -156,6 +156,9 @@ run_program()
 
 ints = []
 
+def isIntersection(row, col):
+	return isSolid(row+1, col) and isSolid(row-1, col) and isSolid(row, col+1) and isSolid(row, col-1)
+
 def isSolid(row, col):
 	if not row in field:
 		return False
@@ -173,7 +176,7 @@ def findInts():
 		for col in range(cols[0], cols[1] + 1):
 			if field[row][col] == '.' or field[row][col] == 'X':
 				continue
-			is_solid = isSolid(row+1, col) and isSolid(row-1, col) and isSolid(row, col+1) and isSolid(row, col-1)
+			is_solid = isIntersection(row, col)
 			if is_solid:
 				ints.append([row, col])
 				total += row*col
